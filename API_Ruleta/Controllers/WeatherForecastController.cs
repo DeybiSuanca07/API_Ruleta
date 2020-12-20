@@ -1,19 +1,19 @@
 ﻿using Amazon;
 using Amazon.SecretsManager;
 using Amazon.SecretsManager.Model;
+using API_Ruleta.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Ruleta.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : GeneralMethods
     {
 
         private static readonly string[] Summaries = new[]
@@ -54,6 +54,22 @@ namespace API_Ruleta.Controllers
                 throw;
             }
 
+            var id = Guid.NewGuid();
+
+            try
+            {
+                var t = 10;
+                var t1 = 0;
+                var t2 = t / t1;
+            }
+            catch (Exception ex)
+            {
+                RegisterLogFatal(ex, id);
+                //response.Message = $"Ocurrio un error {id}";
+                //response.Status = false;
+                //response.Object = null;
+            }
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -63,7 +79,7 @@ namespace API_Ruleta.Controllers
             })
             .ToArray();
 
-
+        
         }
     }
 }
